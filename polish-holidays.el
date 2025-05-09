@@ -1,10 +1,10 @@
-;;; polish-holidays.el --- Polish holidays for Emacs calendar.
+;;; polish-holidays.el --- Polish holidays
 ;;; inspired by: https://github.com/abo-abo/netherlands-holidays/blob/master/netherlands-holidays.el
 
 ;; Copyright (C) 2025 marbor
 
 ;; Author: marbor
-;; URL: 
+;; URL: https://github.com/przemarbor/polish-holidays
 ;; Version: 1.0.0
 ;; Keywords: calendar
 
@@ -25,11 +25,11 @@
 ;;
 ;; Replace holidays:
 ;;
-;; (setq calendar-holidays holiday-polish-holidays)
+;; (setq calendar-holidays polish-holidays)
 ;;
 ;; Or append holidays:
 ;;
-;; (setq calendar-holidays (append calendar-holidays holiday-polish-holidays))
+;; (setq calendar-holidays (append calendar-holidays polish-holidays))
 
 ;;; Code:
 
@@ -38,7 +38,7 @@
   (require 'holidays))
 
 ;;;###autoload
-(defvar holiday-polish-holidays-national
+(defvar polish-holidays-national
   '(
     ;; National and catholic holidays - non-working days
     (holiday-fixed     1  1 "Nowy Rok")                          ;; New Year's Day
@@ -54,15 +54,14 @@
     (holiday-fixed    11 11 "Narodowe Święto Niepodległości")    ;; Independence Day
     (holiday-fixed    12 25 "Pierwszy dzień Bożego Narodzenia")  ;; Christmas Day
     (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia - Św. Szczepana")   ;; Boxing Day
-    ) 
-  "National Polish holidays - non-working days"
-   )
+    )
+  "National Polish holidays - non-working days.")
 
-(defvar holiday-polish-holidays-other
+(defvar polish-holidays-other
   '(
     ;; other special days
     (holiday-fixed     1 21 "Dzień Babci")
-    (holiday-fixed     1 22 "Dzień Dziadka")    
+    (holiday-fixed     1 22 "Dzień Dziadka")
     (holiday-fixed     2 14 "Walentynki")
     (holiday-easter-etc -52 "Tlusty Czwartek")
     (holiday-fixed     3  8 "Dzień Kobiet")
@@ -75,60 +74,58 @@
     (holiday-fixed    12 24 "Wigilia Bożego Narodzenia")         ;; Christmas Eve
     (holiday-fixed    12 31 "Sylwester")                         ;; New Year's Eve
     )
- "Other special days in Poland - working days"  
-)
+  "Other special days in Poland - working days.")
 
-;; ;; TODO 
-;; (defvar holiday-polish-holidays-catholic
-;;  "Catholic holidays" 
+;; ;; TODO
+;; (defvar polish-holidays-catholic
+;;  "Catholic holidays"
 ;;   '(
 ;;     ;; catholic holidays...
 ;;     )
 ;; )
 
-;; ;; TODO 
-;; (defvar holiday-polish-holidays-other-national
-;;  "Other national holidays - working days" 
+;; ;; TODO
+;; (defvar polish-holidays-other-national
+;;  "Other national holidays - working days"
 ;;   '(
-    ;; other national holidays
-    ;; (holiday-fixed     8  1 "Narodowy Dzień Pamięci Powstania Warszawskiego")
-    ;; ... etc.
+;; other national holidays
+;; (holiday-fixed     8  1 "Narodowy Dzień Pamięci Powstania Warszawskiego")
+;; ... etc.
 ;;     )
 ;; )
 
-;; ;; TODO 
-;; (defvar holiday-polish-holidays-minor
-;;  "Other minor holidays - working days" 
+;; ;; TODO
+;; (defvar polish-holidays-minor
+;;  "Other minor holidays - working days"
 ;;   '(
-    ;; 
-    ;; (holiday-fixed    10 14 "Dzień Nauczyciela")
-    ;; ... etc.
+;; 
+;; (holiday-fixed    10 14 "Dzień Nauczyciela")
+;; ... etc.
 ;;     )
 ;; )
 
 
-(defvar holiday-polish-holidays-notable
-  (append holiday-polish-holidays-national 
-          holiday-polish-holidays-other
+(defvar polish-holidays-notable
+  (append polish-holidays-national
+          polish-holidays-other
           nil)
-  "Notable holidays and commemoration dates in Poland."
-   )
+  "Notable holidays and commemoration dates in Poland.")
 
-(defvar holiday-polish-holidays-all
-  (append holiday-polish-holidays-national 
-          holiday-polish-holidays-other
-          ;; holiday-polish-holidays-catholic -- TODO
-          ;; holiday-polish-holidays-other-national -- TODO
-          ;; holiday-polish-holidays-minor -- TODO
+(defvar polish-holidays-all
+  (append polish-holidays-national
+          polish-holidays-other
+          ;; polish-holidays-catholic -- TODO
+          ;; polish-holidays-other-national -- TODO
+          ;; polish-holidays-minor -- TODO
           nil)
-  "All (?) holidays and commemoration dates in Poland."
-   )
+  "All (?) holidays and commemoration dates in Poland.")
 
 
 
 
-(defun holiday-polish-holidays-set()
+(defun polish-holidays-set()
   "Enable Polish default calendar and disable other calendars."
+  
   ;; disable predefined calendars
   (setq holiday-general-holidays nil
         holiday-bahai-holidays nil
@@ -138,13 +135,11 @@
         holiday-oriental-holidays nil)
   
   ;; set Polish default calendar
-  (setq calendar-holidays holiday-polish-holidays-notable)
-  )
+  (setq calendar-holidays polish-holidays-notable))
 
-(defun holiday-polish-holidays-append()
-  "Append Polish default calendar"
-  (setq calendar-holidays (append calendar-holidays holiday-polish-holidays-notable))
-    )
+(defun polish-holidays-append()
+  "Append Polish default calendar."
+  (setq calendar-holidays (append calendar-holidays polish-holidays-notable)))
 
 
 (provide 'polish-holidays)
