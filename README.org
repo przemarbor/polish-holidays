@@ -1,0 +1,24 @@
+#+TITLE: =polish-holidays= for Emacs calendar
+#+AUTHOR: marbor
+
+* Description
+
+This package adds Polish holidays to the Emacs calendar.
+
+If you have ~org-agenda-include-diary~ set to ~t~,
+these will be also listed in the ~org-agenda~ view.
+
+** Installation
+
+After loading the package, in your =init.el=
+add a call to
+#+begin_src elisp
+(holiday-polish-holidays-set) ;; to enable Polish calendar and disable other calendars
+#+end_src
+or
+add a call to
+#+begin_src elisp
+(holiday-polish-holidays-append) ;; to append Polish calendar to the current list of calendars
+#+end_src
+
+Note that this must be called *before* Emacs calendar is loaded.
