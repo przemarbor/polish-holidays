@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;;; polish-holidays.el --- Polish holidays
 ;;; inspired by: https://github.com/abo-abo/netherlands-holidays/blob/master/netherlands-holidays.el
 
@@ -22,14 +23,31 @@
 ;; see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;; * Description
+;; This package adds Polish holidays to the Emacs calendar.
+;; 
+;; If you have ~org-agenda-include-diary~ set to ~t~,
+;; these will be also listed in the ~org-agenda~ view.
+;; 
+;; * Installation
 ;;
 ;; Replace holidays:
-;;
-;; (setq calendar-holidays polish-holidays)
+;;     (setq calendar-holidays polish-holidays)
 ;;
 ;; Or append holidays:
+;;     (setq calendar-holidays (append calendar-holidays polish-holidays))
 ;;
-;; (setq calendar-holidays (append calendar-holidays polish-holidays))
+;; Note that this must be called *before* Emacs calendar is loaded.
+;;
+;;
+;; You can also do the same with functions:
+;; After loading the package, in your =init.el= add a call to:
+;;     (holiday-polish-holidays-set) ;; to enable Polish calendar and disable other calendars
+;;
+;; or add a call to:
+;;     (holiday-polish-holidays-append) ;; to append Polish calendar to the current list of calendars
+;;
+
 
 ;;; Code:
 
@@ -39,6 +57,7 @@
 
 ;;;###autoload
 (defvar polish-holidays-national
+  ;; source: https://pl.wikipedia.org/wiki/Dni_wolne_od_pracy_w_Polsce
   '(
     ;; National and catholic holidays - non-working days
     (holiday-fixed     1  1 "Nowy Rok")                          ;; New Year's Day
@@ -52,8 +71,9 @@
     (holiday-fixed     8 15 "Wniebowzięcie Najświętszej Maryi Panny; Święto Wojska Polskiego") ;; Assumption of Mary; Polish Army Day
     (holiday-fixed    11  1 "Dzień Wszystkich Świętych")         ;; All Saints' Day
     (holiday-fixed    11 11 "Narodowe Święto Niepodległości")    ;; Independence Day
+    (holiday-fixed    12 24 "Wigilia Bożego Narodzenia")         ;; Christmas Eve
     (holiday-fixed    12 25 "Pierwszy dzień Bożego Narodzenia")  ;; Christmas Day
-    (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia - Św. Szczepana")   ;; Boxing Day
+    (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia; Święto Św. Szczepana")   ;; Boxing Day
     )
   "National Polish holidays - non-working days.")
 
@@ -71,12 +91,13 @@
     (holiday-fixed     6 23 "Dzień Ojca")
     (holiday-fixed     9 30 "Dzień Chłopaka")
     (holiday-fixed    12  6 "Mikołajki")
-    (holiday-fixed    12 24 "Wigilia Bożego Narodzenia")         ;; Christmas Eve
     (holiday-fixed    12 31 "Sylwester")                         ;; New Year's Eve
     )
   "Other special days in Poland - working days.")
 
-;; ;; TODO
+
+;; ;; TODO: include holidays from:
+;; ;; https://pl.wikipedia.org/wiki/%C5%9Awi%C4%99ta_katolickie_w_Polsce
 ;; (defvar polish-holidays-catholic
 ;;  "Catholic holidays"
 ;;   '(
@@ -84,25 +105,17 @@
 ;;     )
 ;; )
 
-;; ;; TODO
-;; (defvar polish-holidays-other-national
+;; ;; TODO:
+;; (defvar polish-holidays-other-minor
 ;;  "Other national holidays - working days"
 ;;   '(
 ;; other national holidays
 ;; (holiday-fixed     8  1 "Narodowy Dzień Pamięci Powstania Warszawskiego")
-;; ... etc.
-;;     )
-;; )
-
-;; ;; TODO
-;; (defvar polish-holidays-minor
-;;  "Other minor holidays - working days"
-;;   '(
-;; 
 ;; (holiday-fixed    10 14 "Dzień Nauczyciela")
 ;; ... etc.
 ;;     )
 ;; )
+
 
 
 (defvar polish-holidays-notable
@@ -115,8 +128,7 @@
   (append polish-holidays-national
           polish-holidays-other
           ;; polish-holidays-catholic -- TODO
-          ;; polish-holidays-other-national -- TODO
-          ;; polish-holidays-minor -- TODO
+          ;; polish-holidays-other-minor -- TODO
           nil)
   "All (?) holidays and commemoration dates in Poland.")
 
