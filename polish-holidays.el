@@ -1,5 +1,5 @@
-;;; -*- lexical-binding: t; -*-
-;;; polish-holidays.el --- Polish holidays
+;;; polish-holidays.el --- Polish holidays -*- lexical-binding: t -*-
+
 ;;; inspired by: https://github.com/abo-abo/netherlands-holidays/blob/master/netherlands-holidays.el
 
 ;; Copyright (C) 2025 marbor
