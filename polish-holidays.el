@@ -1,7 +1,5 @@
 ;;; polish-holidays.el --- Polish holidays -*- lexical-binding: t -*-
 
-;;; inspired by: https://github.com/abo-abo/netherlands-holidays/blob/master/netherlands-holidays.el
-
 ;; Copyright (C) 2025 marbor
 
 ;; Author: marbor
@@ -42,10 +40,11 @@
 ;;
 ;; You can also do the same with functions:
 ;; After loading the package, in your =init.el= add a call to:
-;;     (holiday-polish-holidays-set) ;; to enable Polish calendar and disable other calendars
-;;
+;;     (holiday-polish-holidays-set) ;; 
+;; to enable Polish calendar and disable other calendars,
 ;; or add a call to:
-;;     (holiday-polish-holidays-append) ;; to append Polish calendar to the current list of calendars
+;;     (holiday-polish-holidays-append)
+;; to append Polish calendar to the current list of calendars
 ;;
 
 
