@@ -6,6 +6,7 @@
 ;; URL: https://github.com/przemarbor/polish-holidays
 ;; Version: 1.0.0
 ;; Keywords: calendar
+;; Package-Requires: ((emacs "24.1"))
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
