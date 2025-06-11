@@ -24,10 +24,10 @@
 ;;; Commentary:
 ;; * Description
 ;; This package adds Polish holidays to the Emacs calendar.
-;; 
+;;
 ;; If you have ~org-agenda-include-diary~ set to ~t~,
 ;; these will be also listed in the ~org-agenda~ view.
-;; 
+;;
 ;; * Installation
 ;;
 ;; Replace holidays:
@@ -41,7 +41,7 @@
 ;;
 ;; You can also do the same with functions:
 ;; After loading the package, in your =init.el= add a call to:
-;;     (polish-holidays-set) ;; 
+;;     (polish-holidays-set) ;;
 ;; to enable Polish calendar and disable other calendars,
 ;; or add a call to:
 ;;     (polish-holidays-append)
@@ -96,14 +96,58 @@
   "Other special days in Poland - working days.")
 
 
-;; ;; TODO: include holidays from:
-;; ;; https://pl.wikipedia.org/wiki/%C5%9Awi%C4%99ta_katolickie_w_Polsce
-;; (defvar polish-holidays-catholic
-;;  "Catholic holidays"
-;;   '(
-;;     ;; catholic holidays...
-;;     )
-;; )
+;; Fixed-date Great Feasts and Saints in the Catholic Church
+(defvar polish-holidays-catholic--fixed-holidays
+  '((holiday-fixed  1  1 "Uroczystość Świętej Bożej Rodzicielki Maryi") ; "Solemnity of Mary, Mother of God"
+    (holiday-fixed  1  6 "Święto Trzech Króli") ; "Epiphany"
+    (holiday-fixed  2  2 "Ofiarowanie Pańskie (Matki Bożej Gromnicznej)") ; "Presentation of the Lord (Candlemas)"
+    (holiday-fixed  2 11 "Najświętszej Maryi Panny z Lourdes") ; "Our Lady of Lourdes"
+    (holiday-fixed  3 19 "Uroczystość Świętego Józefa, Oblubieńca Najświętszej Maryi Panny") ; "Solemnity of Saint Joseph, Spouse of the Blessed Virgin Mary"
+    (holiday-fixed  3 25 "Zwiastowanie Pańskie") ; "Annunciation of the Lord"
+    (holiday-fixed  4 25 "Świętego Marka Ewangelisty") ; "Saint Mark, the Evangelist"
+    (holiday-fixed  4 29 "Święta Katarzyna ze Sieny") ; "Saint Catherine of Siena"
+    (holiday-fixed  5 31 "Nawiedzenie Najświętszej Maryi Panny") ; "Visitation of the Blessed Virgin Mary"
+    (holiday-fixed  6 24 "Narodzenie Świętego Jana Chrzciciela") ; "Nativity of Saint John the Baptist"
+    (holiday-fixed  6 29 "Uroczystość Świętych Apostołów Piotra i Pawła") ; "Solemnity of Saints Peter and Paul, Apostles"
+    (holiday-fixed  7 16 "Najświętszej Maryi Panny z Góry Karmel") ; "Our Lady of Mount Carmel"
+    (holiday-fixed  8 15 "Wniebowzięcie Najświętszej Maryi Panny") ; "Assumption of the Blessed Virgin Mary"
+    (holiday-fixed  9  8 "Narodzenie Najświętszej Maryi Panny") ; "Nativity of the Blessed Virgin Mary"
+    (holiday-fixed  9 14 "Podwyższenie Krzyża Świętego") ; "Exaltation of the Holy Cross"
+    (holiday-fixed  9 21 "Świętego Mateusza, Apostoła i Ewangelisty") ; "Saint Matthew, Apostle and Evangelist"
+    (holiday-fixed 10  18 "Świętego Łukasza Ewangelisty") ; "Saint Luke, the Evangelist"
+    (holiday-fixed 10  7 "Najświętszej Maryi Panny Różańcowej") ; "Our Lady of the Rosary"
+    (holiday-fixed 11  1 "Uroczystość Wszystkich Świętych") ; "All Saints' Day"
+    (holiday-fixed 11  2 "Wspomnienie Wszystkich Wiernych Zmarłych") ; "All Souls' Day"
+    (holiday-fixed 11 21 "Ofiarowanie Najświętszej Maryi Panny") ; "Presentation of Mary"
+    (holiday-fixed 12  8 "Uroczystość Niepokalanego Poczęcia Najświętszej Maryi Panny") ; "Immaculate Conception of the Blessed Virgin Mary"
+    (holiday-fixed 12 12 "Najświętszej Maryi Panny z Guadalupe") ; "Our Lady of Guadalupe"
+    (holiday-fixed 12 25 "Boże Narodzenie (Narodzenie Pańskie)") ; "Christmas (Nativity of the Lord)"
+    (holiday-fixed 12 26 "Świętego Szczepana, Pierwszego Męczennika") ; "Saint Stephen, the First Martyr"
+    (holiday-fixed 12 27 "Świętego Jana, Apostoła i Ewangelisty") ; "Saint John, Apostle and Evangelist"
+    (holiday-fixed 12 28 "Święto Młodzianków") ; "Feast of the Holy Innocents"
+    (holiday-fixed 12 31 "Świętego Sylwestra I"))) ; "Saint Sylvester I"
+
+;; Holidays based on the Easter date (Paschal cycle)
+(defvar polish-holidays-catholic--paschal-cycle
+  '((holiday-easter-etc -46 "Środa Popielcowa (Początek Wielkiego Postu)") ; "Ash Wednesday (Beginning of Lent)"
+    (holiday-easter-etc -21 "Niedziela Laetare") ; "Laetare Sunday"
+    (holiday-easter-etc -7  "Niedziela Palmowa") ; "Palm Sunday"
+    (holiday-easter-etc -3  "Wielki Czwartek") ; "Holy Thursday"
+    (holiday-easter-etc -2  "Wielki Piątek") ; "Good Friday"
+    (holiday-easter-etc -1  "Wielka Sobota") ; "Holy Saturday"
+    (holiday-easter-etc   0 "Niedziela Wielkanocna") ; "Easter Sunday"
+    (holiday-easter-etc   1 "Poniedziałek Wielkanocny") ; "Easter Monday"
+    (holiday-easter-etc  39 "Wniebowstąpienie Pańskie") ; "Ascension of the Lord"
+    (holiday-easter-etc  49 "Niedziela Zesłania Ducha Świętego (Zielone Świątki)") ; "Pentecost Sunday"
+    (holiday-easter-etc  50 "Poniedziałek Zesłania Ducha Świętego") ; "Pentecost Monday"
+    (holiday-easter-etc  60 "Uroczystość Najświętszego Ciała i Krwi Chrystusa (Boże Ciało)") ; "Corpus Christi (Most Holy Body and Blood of Christ)"
+    (holiday-easter-etc  68 "Uroczystość Najświętszego Serca Pana Jezusa") ; "Solemnity of the Sacred Heart of Jesus"
+    (holiday-easter-etc  69 "Niepokalane Serce Najświętszej Maryi Panny"))) ; "Immaculate Heart of Mary"
+
+;; https://pl.wikipedia.org/wiki/%C5%9Awi%C4%99ta_katolickie_w_Polsce
+(defvar polish-holidays-catholic
+  (append polish-holidays-catholic--fixed-holidays
+          polish-holidays-catholic--paschal-cycle))
 
 ;; ;; TODO:
 ;; (defvar polish-holidays-other-minor
@@ -117,7 +161,6 @@
 ;; )
 
 
-
 (defvar polish-holidays-notable
   (append polish-holidays-national
           polish-holidays-other
@@ -127,7 +170,7 @@
 (defvar polish-holidays-all
   (append polish-holidays-national
           polish-holidays-other
-          ;; polish-holidays-catholic -- TODO
+          polish-holidays-catholic
           ;; polish-holidays-other-minor -- TODO
           nil)
   "All (?) holidays and commemoration dates in Poland.")
@@ -135,9 +178,9 @@
 
 
 
-(defun polish-holidays-set()
+(defun polish-holidays-set ()
   "Enable Polish default calendar and disable other calendars."
-  
+
   ;; disable predefined calendars
   (setq holiday-general-holidays nil
         holiday-bahai-holidays nil
@@ -145,11 +188,11 @@
         holiday-christian-holidays nil
         holiday-islamic-holidays nil
         holiday-oriental-holidays nil)
-  
+
   ;; set Polish default calendar
   (setq calendar-holidays polish-holidays-notable))
 
-(defun polish-holidays-append()
+(defun polish-holidays-append ()
   "Append Polish default calendar."
   (setq calendar-holidays (append calendar-holidays polish-holidays-notable)))
 
