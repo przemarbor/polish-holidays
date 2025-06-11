@@ -43,10 +43,13 @@
 ;; After loading the package, in your =init.el= add a call to:
 ;;     (polish-holidays-set) ;;
 ;; to enable Polish calendar and disable other calendars,
+;;     (polish-holidays-set t) ;;
+;; to set ALL Polish calendar holidays and disable other calendars,
 ;; or add a call to:
 ;;     (polish-holidays-append)
 ;; to append Polish calendar to the current list of calendars
-;;
+;;     (polish-holidays-append t)
+;; to append ALL Polish calendar to the current list of calendars
 
 
 ;;; Code:
@@ -58,9 +61,7 @@
 ;;;###autoload
 (defvar polish-holidays-national
   ;; source: https://pl.wikipedia.org/wiki/Dni_wolne_od_pracy_w_Polsce
-  '(
-    ;; National and catholic holidays - non-working days
-    (holiday-fixed     1  1 "Nowy Rok")                          ;; New Year's Day
+  '((holiday-fixed     1  1 "Nowy Rok")                          ;; New Year's Day
     (holiday-fixed     1  6 "Święto Trzech Króli")               ;; Epiphany
     (holiday-easter-etc   0 "Wielkanoc")                         ;; Easter Sunday
     (holiday-easter-etc   1 "Poniedziałek Wielkanocny")          ;; Easter Monday
@@ -73,14 +74,11 @@
     (holiday-fixed    11 11 "Narodowe Święto Niepodległości")    ;; Independence Day
     (holiday-fixed    12 24 "Wigilia Bożego Narodzenia")         ;; Christmas Eve
     (holiday-fixed    12 25 "Pierwszy dzień Bożego Narodzenia")  ;; Christmas Day
-    (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia; Święto Św. Szczepana")   ;; Boxing Day
-    )
+    (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia; Święto Św. Szczepana")) ;; Boxing Day
   "National Polish holidays - non-working days.")
 
 (defvar polish-holidays-other
-  '(
-    ;; other special days
-    (holiday-fixed     1 21 "Dzień Babci")
+  '((holiday-fixed     1 21 "Dzień Babci")
     (holiday-fixed     1 22 "Dzień Dziadka")
     (holiday-fixed     2 14 "Walentynki")
     (holiday-easter-etc -52 "Tlusty Czwartek")
@@ -91,8 +89,7 @@
     (holiday-fixed     6 23 "Dzień Ojca")
     (holiday-fixed     9 30 "Dzień Chłopaka")
     (holiday-fixed    12  6 "Mikołajki")
-    (holiday-fixed    12 31 "Sylwester")                         ;; New Year's Eve
-    )
+    (holiday-fixed    12 31 "Sylwester"))                       ;; New Year's Eve
   "Other special days in Poland - working days.")
 
 
@@ -147,7 +144,8 @@
 ;; https://pl.wikipedia.org/wiki/%C5%9Awi%C4%99ta_katolickie_w_Polsce
 (defvar polish-holidays-catholic
   (append polish-holidays-catholic--fixed-holidays
-          polish-holidays-catholic--paschal-cycle))
+          polish-holidays-catholic--paschal-cycle)
+  "Catholic Holidays")
 
 ;; ;; TODO:
 ;; (defvar polish-holidays-other-minor
@@ -168,19 +166,19 @@
   "Notable holidays and commemoration dates in Poland.")
 
 (defvar polish-holidays-all
-  (append polish-holidays-national
-          polish-holidays-other
+  (append polish-holidays-notable
           polish-holidays-catholic
           ;; polish-holidays-other-minor -- TODO
           nil)
   "All (?) holidays and commemoration dates in Poland.")
 
+(defun polish-holidays-get (&optional all?)
+  (if all?
+      polish-holidays-all
+    polish-holidays-notable))
 
-
-
-(defun polish-holidays-set ()
+(defun polish-holidays-set (&optional all?)
   "Enable Polish default calendar and disable other calendars."
-
   ;; disable predefined calendars
   (setq holiday-general-holidays nil
         holiday-bahai-holidays nil
@@ -190,11 +188,12 @@
         holiday-oriental-holidays nil)
 
   ;; set Polish default calendar
-  (setq calendar-holidays polish-holidays-notable))
+  (setq calendar-holidays (polish-holidays-get all?)))
 
-(defun polish-holidays-append ()
+
+(defun polish-holidays-append (&optional all?)
   "Append Polish default calendar."
-  (setq calendar-holidays (append calendar-holidays polish-holidays-notable)))
+  (setq calendar-holidays (append calendar-holidays (polish-holidays-get all?))))
 
 
 (provide 'polish-holidays)
