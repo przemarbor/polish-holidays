@@ -161,15 +161,14 @@
 
 (defvar polish-holidays-notable
   (append polish-holidays-national
-          polish-holidays-other
-          nil)
+          polish-holidays-other)
   "Notable holidays and commemoration dates in Poland.")
 
 (defvar polish-holidays-all
   (append polish-holidays-notable
           polish-holidays-catholic
           ;; polish-holidays-other-minor -- TODO
-          nil)
+          )
   "All (?) holidays and commemoration dates in Poland.")
 
 (defun polish-holidays-get (&optional all?)
