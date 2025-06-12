@@ -67,12 +67,12 @@
     (holiday-fixed     5  3 "Święto Konstytucji 3 Maja")         ;; Constitution Day
     (holiday-easter-etc  49 "Zielone Świątki")                   ;; Whitsun (Pentecost)
     (holiday-easter-etc  60 "Boże Ciało")                        ;; Corpus Christi
-    (holiday-fixed     8 15 "Wniebowzięcie Najświętszej Maryi Panny; Święto Wojska Polskiego") ;; Assumption of Mary; Polish Army Day
+    (holiday-fixed     8 15 "Wniebowzięcie Najświętszej Maryi Panny; Święto Wojska Polskiego") ;; Assumption of the Blessed Virgin Mary; Polish Army Day
     (holiday-fixed    11  1 "Dzień Wszystkich Świętych")         ;; All Saints' Day
     (holiday-fixed    11 11 "Narodowe Święto Niepodległości")    ;; Independence Day
     (holiday-fixed    12 24 "Wigilia Bożego Narodzenia")         ;; Christmas Eve
     (holiday-fixed    12 25 "Pierwszy dzień Bożego Narodzenia")  ;; Christmas Day
-    (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia; Święto Św. Szczepana")) ;; Boxing Day
+    (holiday-fixed    12 26 "Drugi dzień Bożego Narodzenia; Świętego Szczepana, Pierwszego Męczennika")) ;; Boxing Day; Saint Stephen, the First Martyr
   "National Polish holidays - non-working days.")
 
 (defvar polish-holidays-other
@@ -86,15 +86,14 @@
     (holiday-fixed     6  1 "Dzień Dziecka")
     (holiday-fixed     6 23 "Dzień Ojca")
     (holiday-fixed     9 30 "Dzień Chłopaka")
-    (holiday-fixed    12  6 "Mikołajki")
-    (holiday-fixed    12 31 "Sylwester"))                       ;; New Year's Eve
+    (holiday-fixed    12  6 "Mikołajki; Św. Mikołaja z Miry") ;; Saint Nicholas Day
+    (holiday-fixed    12 31 "Sylwester; Św. Sylwestra I")) ;; New Year's Eve; Saint Sylvester I
   "Other special days in Poland - working days.")
 
 
 ;; Fixed-date Great Feasts and Saints in the Catholic Church
 (defvar polish-holidays-nonnational-catholic--fixed-holidays
   '((holiday-fixed  1  1 "Uroczystość Świętej Bożej Rodzicielki Maryi") ; "Solemnity of Mary, Mother of God"
-    (holiday-fixed  1  6 "Święto Trzech Króli") ; "Epiphany"
     (holiday-fixed  2  2 "Ofiarowanie Pańskie (Matki Bożej Gromnicznej)") ; "Presentation of the Lord (Candlemas)"
     (holiday-fixed  2 11 "Najświętszej Maryi Panny z Lourdes") ; "Our Lady of Lourdes"
     (holiday-fixed  3 19 "Uroczystość Świętego Józefa, Oblubieńca Najświętszej Maryi Panny") ; "Solemnity of Saint Joseph, Spouse of the Blessed Virgin Mary"
@@ -105,22 +104,17 @@
     (holiday-fixed  6 24 "Narodzenie Świętego Jana Chrzciciela") ; "Nativity of Saint John the Baptist"
     (holiday-fixed  6 29 "Uroczystość Świętych Apostołów Piotra i Pawła") ; "Solemnity of Saints Peter and Paul, Apostles"
     (holiday-fixed  7 16 "Najświętszej Maryi Panny z Góry Karmel") ; "Our Lady of Mount Carmel"
-    (holiday-fixed  8 15 "Wniebowzięcie Najświętszej Maryi Panny") ; "Assumption of the Blessed Virgin Mary"
     (holiday-fixed  9  8 "Narodzenie Najświętszej Maryi Panny") ; "Nativity of the Blessed Virgin Mary"
     (holiday-fixed  9 14 "Podwyższenie Krzyża Świętego") ; "Exaltation of the Holy Cross"
     (holiday-fixed  9 21 "Świętego Mateusza, Apostoła i Ewangelisty") ; "Saint Matthew, Apostle and Evangelist"
-    (holiday-fixed 10  18 "Świętego Łukasza Ewangelisty") ; "Saint Luke, the Evangelist"
     (holiday-fixed 10  7 "Najświętszej Maryi Panny Różańcowej") ; "Our Lady of the Rosary"
-    (holiday-fixed 11  1 "Uroczystość Wszystkich Świętych") ; "All Saints' Day"
+    (holiday-fixed 10 18 "Świętego Łukasza Ewangelisty") ; "Saint Luke, the Evangelist"
     (holiday-fixed 11  2 "Wspomnienie Wszystkich Wiernych Zmarłych") ; "All Souls' Day"
     (holiday-fixed 11 21 "Ofiarowanie Najświętszej Maryi Panny") ; "Presentation of Mary"
     (holiday-fixed 12  8 "Uroczystość Niepokalanego Poczęcia Najświętszej Maryi Panny") ; "Immaculate Conception of the Blessed Virgin Mary"
     (holiday-fixed 12 12 "Najświętszej Maryi Panny z Guadalupe") ; "Our Lady of Guadalupe"
-    (holiday-fixed 12 25 "Boże Narodzenie (Narodzenie Pańskie)") ; "Christmas (Nativity of the Lord)"
-    (holiday-fixed 12 26 "Świętego Szczepana, Pierwszego Męczennika") ; "Saint Stephen, the First Martyr"
     (holiday-fixed 12 27 "Świętego Jana, Apostoła i Ewangelisty") ; "Saint John, Apostle and Evangelist"
-    (holiday-fixed 12 28 "Święto Młodzianków") ; "Feast of the Holy Innocents"
-    (holiday-fixed 12 31 "Świętego Sylwestra I"))) ; "Saint Sylvester I"
+    (holiday-fixed 12 28 "Święto Świętych Młodzianków, Męczenników"))) ; "Feast of the Holy Innocents"
 
 ;; Holidays based on the Easter date (Paschal cycle)
 (defvar polish-holidays-nonnational-catholic--paschal-cycle
@@ -130,12 +124,9 @@
     (holiday-easter-etc -3  "Wielki Czwartek") ; "Holy Thursday"
     (holiday-easter-etc -2  "Wielki Piątek") ; "Good Friday"
     (holiday-easter-etc -1  "Wielka Sobota") ; "Holy Saturday"
-    (holiday-easter-etc   0 "Niedziela Wielkanocna") ; "Easter Sunday"
-    (holiday-easter-etc   1 "Poniedziałek Wielkanocny") ; "Easter Monday"
     (holiday-easter-etc  39 "Wniebowstąpienie Pańskie") ; "Ascension of the Lord"
     (holiday-easter-etc  49 "Niedziela Zesłania Ducha Świętego (Zielone Świątki)") ; "Pentecost Sunday"
     (holiday-easter-etc  50 "Poniedziałek Zesłania Ducha Świętego") ; "Pentecost Monday"
-    (holiday-easter-etc  60 "Uroczystość Najświętszego Ciała i Krwi Chrystusa (Boże Ciało)") ; "Corpus Christi (Most Holy Body and Blood of Christ)"
     (holiday-easter-etc  68 "Uroczystość Najświętszego Serca Pana Jezusa") ; "Solemnity of the Sacred Heart of Jesus"
     (holiday-easter-etc  69 "Niepokalane Serce Najświętszej Maryi Panny"))) ; "Immaculate Heart of Mary"
 
@@ -143,7 +134,7 @@
 (defvar polish-holidays-catholic
   (append polish-holidays-nonnational-catholic--fixed-holidays
           polish-holidays-nonnational-catholic--paschal-cycle)
-  "Catholic Holidays")
+  "Catholic Holidays - working days.")
 
 ;; ;; TODO:
 ;; (defvar polish-holidays-other-minor
