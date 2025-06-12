@@ -94,7 +94,7 @@
 
 
 ;; Fixed-date Great Feasts and Saints in the Catholic Church
-(defvar polish-holidays-catholic--fixed-holidays
+(defvar polish-holidays-nonnational-catholic--fixed-holidays
   '((holiday-fixed  1  1 "Uroczystość Świętej Bożej Rodzicielki Maryi") ; "Solemnity of Mary, Mother of God"
     (holiday-fixed  1  6 "Święto Trzech Króli") ; "Epiphany"
     (holiday-fixed  2  2 "Ofiarowanie Pańskie (Matki Bożej Gromnicznej)") ; "Presentation of the Lord (Candlemas)"
@@ -125,7 +125,7 @@
     (holiday-fixed 12 31 "Świętego Sylwestra I"))) ; "Saint Sylvester I"
 
 ;; Holidays based on the Easter date (Paschal cycle)
-(defvar polish-holidays-catholic--paschal-cycle
+(defvar polish-holidays-nonnational-catholic--paschal-cycle
   '((holiday-easter-etc -46 "Środa Popielcowa (Początek Wielkiego Postu)") ; "Ash Wednesday (Beginning of Lent)"
     (holiday-easter-etc -21 "Niedziela Laetare") ; "Laetare Sunday"
     (holiday-easter-etc -7  "Niedziela Palmowa") ; "Palm Sunday"
@@ -143,8 +143,8 @@
 
 ;; https://pl.wikipedia.org/wiki/%C5%9Awi%C4%99ta_katolickie_w_Polsce
 (defvar polish-holidays-catholic
-  (append polish-holidays-catholic--fixed-holidays
-          polish-holidays-catholic--paschal-cycle)
+  (append polish-holidays-nonnational-catholic--fixed-holidays
+          polish-holidays-nonnational-catholic--paschal-cycle)
   "Catholic Holidays")
 
 ;; ;; TODO:
