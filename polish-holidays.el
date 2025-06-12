@@ -43,14 +43,12 @@
 ;; After loading the package, in your =init.el= add a call to:
 ;;     (polish-holidays-set) ;;
 ;; to enable Polish calendar and disable other calendars,
-;;     (polish-holidays-set t) ;;
-;; to set ALL Polish calendar holidays and disable other calendars,
 ;; or add a call to:
 ;;     (polish-holidays-append)
 ;; to append Polish calendar to the current list of calendars
-;;     (polish-holidays-append t)
-;; to append ALL Polish calendar to the current list of calendars
-
+;; additionally, you can set below variable
+;;     (setq polish-holidays-use-all-p t)
+;; to use all the holidays
 
 ;;; Code:
 
@@ -171,12 +169,20 @@
           )
   "All (?) holidays and commemoration dates in Poland.")
 
-(defun polish-holidays-get (&optional all?)
-  (if all?
+(defvar polish-holidays-use-all-p nil
+  "Variable which is used in `polish-holidays--list' function.
+If value is nil, the `polish-holidays-notable' is used as list of holidays.
+If value is non-nil, the `polish-holidays-all' is used.")
+
+(defun polish-holidays--list ()
+  "Return the list of holidays based on `polish-holidays-use-all-p'.
+If `polish-holidays-use-all-p' is non-nil, return all holidays.
+Otherwise, return only notable holidays."
+  (if polish-holidays-use-all-p
       polish-holidays-all
     polish-holidays-notable))
 
-(defun polish-holidays-set (&optional all?)
+(defun polish-holidays-set ()
   "Enable Polish default calendar and disable other calendars."
   ;; disable predefined calendars
   (setq holiday-general-holidays nil
@@ -187,12 +193,11 @@
         holiday-oriental-holidays nil)
 
   ;; set Polish default calendar
-  (setq calendar-holidays (polish-holidays-get all?)))
+  (setq calendar-holidays (polish-holidays--list)))
 
-
-(defun polish-holidays-append (&optional all?)
+(defun polish-holidays-append ()
   "Append Polish default calendar."
-  (setq calendar-holidays (append calendar-holidays (polish-holidays-get all?))))
+  (setq calendar-holidays (append calendar-holidays (polish-holidays--list))))
 
 
 (provide 'polish-holidays)
