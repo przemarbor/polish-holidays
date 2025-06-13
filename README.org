@@ -1,0 +1,10 @@
+* example configuration
+** use-package
+#+begin_src emacs-lisp :results silent :eval no
+  (use-package polish-holidays
+    :ensure t
+    :after holidays
+    :config
+    (setq polish-holidays-use-all-p t)
+    (polish-holidays-set))
+#+end_src
