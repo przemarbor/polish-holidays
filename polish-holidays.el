@@ -48,8 +48,16 @@
 ;; to append Polish calendar to the current list of calendars
 ;; additionally, you can set below variable
 ;;     (setq polish-holidays-use-all-p t)
-;; to use all the holidays
-
+;; to use all the holidays (i.e. include catholic holidays)
+;;
+;; * Example configuration: 
+;;     (use-package polish-holidays
+;;       :ensure t
+;;       :after holidays
+;;       :config
+;;       (setq polish-holidays-use-all-p nil)  ; 'notable' holidays
+;;       ;; (setq polish-holidays-use-all-p t) ; include catholic holidays
+;;       (polish-holidays-set))
 ;;; Code:
 
 (eval-when-compile
@@ -125,7 +133,7 @@
     (holiday-easter-etc -2  "Wielki Piątek") ; "Good Friday"
     (holiday-easter-etc -1  "Wielka Sobota") ; "Holy Saturday"
     (holiday-easter-etc  39 "Wniebowstąpienie Pańskie") ; "Ascension of the Lord"
-    (holiday-easter-etc  49 "Niedziela Zesłania Ducha Świętego (Zielone Świątki)") ; "Pentecost Sunday"
+    ;;(holiday-easter-etc  49 "Niedziela Zesłania Ducha Świętego (Zielone Świątki)") ; "Pentecost Sunday" ;; this is national holiday
     (holiday-easter-etc  50 "Poniedziałek Zesłania Ducha Świętego") ; "Pentecost Monday"
     (holiday-easter-etc  68 "Uroczystość Najświętszego Serca Pana Jezusa") ; "Solemnity of the Sacred Heart of Jesus"
     (holiday-easter-etc  69 "Niepokalane Serce Najświętszej Maryi Panny"))) ; "Immaculate Heart of Mary"
